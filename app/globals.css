@@ -52,6 +52,10 @@
   color: #FFFFFF;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
@@ -59,6 +63,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Grid Pattern - below 5% opacity, almost invisible engineering grid */

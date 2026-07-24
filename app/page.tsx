@@ -32,19 +32,7 @@ type ProjectFormValues = {
   email: string;
   company: string;
   brief: string;
-  stage: string;
-  helpNeeded: string;
-  network: string;
-  timing: string;
-  budget: string;
-  links: string;
 };
-
-const stageOptions = ["Idea", "Defined concept", "Prototype", "Live product"];
-const helpOptions = ["Strategy", "Design", "Smart contracts", "Full-stack build", "Infrastructure", "Ongoing team", "Not sure"];
-const networkOptions = ["Anubis", "Another EVM network", "Multi-chain", "Not decided"];
-const timingOptions = ["Immediate (< 1 month)", "1 - 3 months", "Not sure / flexible"];
-const budgetOptions = ["<$15k/mo", "$15k - $30k/mo", "$30k - $60k/mo", "$60k+/mo"];
 
 export default function Home() {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -69,30 +57,16 @@ export default function Home() {
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
-    formState: { errors }
+    formState: { errors, isSubmitting }
   } = useForm<ProjectFormValues>({
     mode: "onChange",
     defaultValues: {
       name: "",
       email: "",
       company: "",
-      brief: "",
-      stage: "",
-      helpNeeded: "",
-      network: "",
-      timing: "",
-      budget: "",
-      links: ""
+      brief: ""
     }
   });
-
-  const selectedStage = watch("stage");
-  const selectedHelp = watch("helpNeeded");
-  const selectedNetwork = watch("network");
-  const selectedTiming = watch("timing");
-  const selectedBudget = watch("budget");
 
   const onSubmit: SubmitHandler<ProjectFormValues> = async (data) => {
     setFormSubmitted(true);
@@ -252,16 +226,16 @@ export default function Home() {
               </motion.div>
 
               {/* CTAs with premium easing lift and magnet-like bounds */}
-              <motion.div variants={fadeUpVariants} className="flex flex-wrap gap-4">
+              <motion.div variants={fadeUpVariants} className="flex flex-col sm:flex-row flex-wrap gap-4">
                 <button
                   onClick={() => handleScrollTo("#contact")}
-                  className="bg-accent-emerald hover:bg-accent-emerald/90 text-background px-7 py-3.5 text-xs font-mono uppercase tracking-wider font-semibold rounded-xs transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent-emerald/10 cursor-pointer"
+                  className="w-full sm:w-auto bg-accent-emerald hover:bg-accent-emerald/90 text-background px-7 py-3.5 text-xs font-mono uppercase tracking-wider font-semibold rounded-xs transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent-emerald/10 cursor-pointer"
                 >
                   Build with Atum
                 </button>
                 <button
                   onClick={() => handleScrollTo("#services")}
-                  className="bg-[#101418] border border-border-subtle hover:border-white/20 text-[#FFFFFF] px-7 py-3.5 text-xs font-mono uppercase tracking-wider transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
+                  className="w-full sm:w-auto bg-surface border border-border-subtle hover:border-white/20 text-text-primary px-7 py-3.5 text-xs font-mono uppercase tracking-wider transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
                 >
                   Explore our capabilities
                 </button>
@@ -297,15 +271,15 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="py-32 bg-[#050505] border-t border-border-subtle relative z-10"
+        className="py-16 md:py-24 lg:py-32 bg-background border-t border-border-subtle relative z-10"
       >
         <div className="max-w-[1320px] mx-auto px-6 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 text-left">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 text-left">
             <div className="lg:col-span-5 space-y-3">
               <span className="font-mono text-[10px] font-bold text-accent-emerald uppercase tracking-widest block">
                 THE OPPORTUNITY
               </span>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-white leading-tight max-w-sm">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-white leading-tight max-w-sm">
                 Powerful infrastructure is only the beginning.
               </h2>
             </div>
@@ -316,10 +290,10 @@ export default function Home() {
               <p className="text-sm md:text-base text-text-secondary leading-relaxed max-w-2xl font-semibold">
                 Atum exists to build that layer.
               </p>
-              <div className="pt-4">
+              <div className="pt-2">
                 <button
                   onClick={() => handleScrollTo("#opportunities")}
-                  className="bg-[#101418] border border-border-subtle hover:border-white/20 text-[#FFFFFF] px-6 py-2.5 text-[10px] font-mono uppercase tracking-wider transition-all duration-200 hover:-translate-y-0.5 rounded-xs cursor-pointer animate-pulse-subtle"
+                  className="bg-surface border border-border-subtle hover:border-white/20 text-text-primary px-6 py-2.5 text-[10px] font-mono uppercase tracking-wider transition-all duration-200 hover:-translate-y-0.5 rounded-xs cursor-pointer animate-pulse-subtle"
                 >
                   See what we can build on Anubis
                 </button>
@@ -336,14 +310,14 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="py-32 border-t border-border-subtle relative z-10"
+        className="py-16 md:py-24 lg:py-32 border-t border-border-subtle relative z-10"
       >
-        <div className="max-w-[1320px] mx-auto px-6 md:px-8 space-y-16">
+        <div className="max-w-[1320px] mx-auto px-6 md:px-8 space-y-12 md:space-y-16">
           <div className="text-left max-w-3xl space-y-3">
             <span className="font-mono text-[10px] font-bold text-accent-emerald uppercase tracking-widest block">
               FROM IDEA TO PRODUCTION
             </span>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-white leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-white leading-tight">
               One studio. The full product journey.
             </h2>
           </div>
@@ -352,11 +326,11 @@ export default function Home() {
           <ServicesDiagram />
 
           {/* Cards Grid with Proximity Lighting / Subtle Lift */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {services.map((svc, idx) => (
               <Card
                 key={idx}
-                className="flex flex-col justify-between text-left h-full border border-border-subtle bg-[#101418] p-6 hover:-translate-y-1 hover:border-accent-emerald/40 hover:shadow-lg hover:shadow-accent-emerald/[0.02] transition-all duration-300 rounded-xs"
+                className="flex flex-col justify-between text-left h-full border border-border-subtle bg-surface/60 p-6 hover:-translate-y-1 hover:border-accent-emerald/40 hover:shadow-lg hover:shadow-accent-emerald/[0.02] transition-all duration-300 rounded-xs"
                 spotlight={true}
               >
                 <div className="space-y-4">
@@ -374,10 +348,10 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-left pt-4">
+          <div className="text-left pt-2">
             <button
               onClick={() => handleScrollTo("#contact")}
-              className="bg-[#101418] border border-border-subtle hover:border-white/20 text-[#FFFFFF] px-6 py-2.5 text-[10px] font-mono uppercase tracking-wider transition-all duration-200 hover:-translate-y-0.5 rounded-xs cursor-pointer"
+              className="bg-surface border border-border-subtle hover:border-white/20 text-text-primary px-6 py-2.5 text-[10px] font-mono uppercase tracking-wider transition-all duration-200 hover:-translate-y-0.5 rounded-xs cursor-pointer"
             >
               View all services
             </button>
@@ -392,14 +366,14 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="py-32 bg-[#050505] border-t border-border-subtle relative z-10"
+        className="py-16 md:py-24 lg:py-32 bg-background border-t border-border-subtle relative z-10"
       >
         <div className="max-w-[1320px] mx-auto px-6 md:px-8">
-          <div className="text-left max-w-3xl mb-20 space-y-3">
+          <div className="text-left max-w-3xl mb-12 md:mb-16 space-y-3">
             <span className="font-mono text-[10px] font-bold text-accent-emerald uppercase tracking-widest block">
               BUILT FOR ANUBIS
             </span>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-white leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-white leading-tight">
               Privacy should unlock new products—not hide old ones.
             </h2>
             <p className="text-sm text-text-secondary leading-relaxed max-w-xl">
@@ -407,11 +381,11 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {opportunities.map((item, idx) => (
               <Card
                 key={idx}
-                className="p-6 border border-border-subtle bg-[#101418] text-left rounded-xs hover:border-accent-emerald/20 transition-all duration-300"
+                className="p-6 border border-border-subtle bg-surface/60 text-left rounded-xs hover:border-accent-emerald/20 transition-all duration-300"
                 spotlight={true}
               >
                 <h4 className="text-xs font-mono font-bold text-white uppercase tracking-widest mb-3">
@@ -424,10 +398,10 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-16 text-left">
+          <div className="mt-12 text-left">
             <button
               onClick={() => handleScrollTo("#contact")}
-              className="bg-[#101418] border border-border-subtle hover:border-white/20 text-[#FFFFFF] px-6 py-2.5 text-[10px] font-mono uppercase tracking-wider transition-all duration-200 hover:-translate-y-0.5 rounded-xs cursor-pointer"
+              className="bg-surface border border-border-subtle hover:border-white/20 text-text-primary px-6 py-2.5 text-[10px] font-mono uppercase tracking-wider transition-all duration-200 hover:-translate-y-0.5 rounded-xs cursor-pointer"
             >
               Explore Anubis DeFi
             </button>
@@ -442,14 +416,14 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="py-32 border-t border-border-subtle relative z-10"
+        className="py-16 md:py-24 lg:py-32 border-t border-border-subtle relative z-10"
       >
         <div className="max-w-[1320px] mx-auto px-6 md:px-8">
-          <div className="text-left max-w-3xl mb-20 space-y-3">
+          <div className="text-left max-w-3xl mb-12 md:mb-16 space-y-3">
             <span className="font-mono text-[10px] font-bold text-accent-emerald uppercase tracking-widest block">
               WHY ATUM
             </span>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-white leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-white leading-tight">
               Built as a product partner, not a code vendor.
             </h2>
           </div>
@@ -457,7 +431,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
             {whyPoints.map((pt, idx) => (
               <div key={idx} className="space-y-4 border-l border-border-subtle pl-6 group">
-                <div className="w-8 h-8 rounded-xs border border-border-subtle bg-[#101418] flex items-center justify-center group-hover:border-accent-emerald/40 transition-colors duration-300">
+                <div className="w-8 h-8 rounded-xs border border-border-subtle bg-surface flex items-center justify-center group-hover:border-accent-emerald/40 transition-colors duration-300">
                   {pt.icon}
                 </div>
                 <h4 className="text-xs font-mono font-bold text-white uppercase tracking-widest pt-1">
@@ -479,26 +453,34 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="py-32 bg-[#050505] border-t border-border-subtle relative z-10"
+        className="py-16 md:py-24 lg:py-32 bg-background border-t border-border-subtle relative z-10"
         ref={timelineRef}
       >
         <div className="max-w-[1320px] mx-auto px-6 md:px-8">
-          <div className="text-left max-w-3xl mb-20 space-y-3">
+          <div className="text-left max-w-3xl mb-12 md:mb-16 space-y-3">
             <span className="font-mono text-[10px] font-bold text-accent-emerald uppercase tracking-widest block">
               HOW WE WORK
             </span>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-white leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-white leading-tight">
               From first principles to a working product.
             </h2>
           </div>
 
           {/* Timeline container */}
           <div className="relative pt-6">
-            {/* Scroll animated progress line */}
-            <div className="absolute top-[34px] left-0 right-0 h-[1.5px] bg-border-subtle z-0">
+            {/* Desktop horizontal scroll progress line */}
+            <div className="hidden lg:block absolute top-[34px] left-0 right-0 h-[1.5px] bg-border-subtle z-0">
               <motion.div
                 className="h-full bg-accent-emerald"
                 style={{ width: progressWidth, originX: 0 }}
+              />
+            </div>
+
+            {/* Mobile/Tablet vertical progress line */}
+            <div className="lg:hidden absolute top-[34px] bottom-[34px] left-[7px] w-[1.5px] bg-border-subtle z-0">
+              <motion.div
+                className="w-full bg-accent-emerald"
+                style={{ height: progressWidth, originY: 0 }}
               />
             </div>
 
@@ -508,14 +490,14 @@ export default function Home() {
                 return (
                   <div
                     key={stage.num}
-                    className="space-y-6 pt-1 cursor-pointer group"
+                    className="space-y-4 lg:space-y-6 pt-1 cursor-pointer group"
                     onMouseEnter={() => setHoveredStage(stage.num)}
                     onMouseLeave={() => setHoveredStage(null)}
                   >
                     {/* Stage Dot indicator with scroll-linked scales */}
                     <motion.div
                       style={{ scale: stage.scale }}
-                      className="w-4 h-4 rounded-full border border-border-subtle bg-[#050505] flex items-center justify-center transition-all duration-300 group-hover:border-accent-emerald"
+                      className="w-4 h-4 rounded-full border border-border-subtle bg-background flex items-center justify-center transition-all duration-300 group-hover:border-accent-emerald"
                     >
                       <div className="w-1.5 h-1.5 rounded-full bg-accent-emerald" />
                     </motion.div>
@@ -538,10 +520,10 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-20 text-left">
+          <div className="mt-12 md:mt-16 text-left">
             <button
               onClick={() => handleScrollTo("#contact")}
-              className="bg-[#101418] border border-border-subtle hover:border-white/20 text-[#FFFFFF] px-6 py-2.5 text-[10px] font-mono uppercase tracking-wider transition-all duration-200 hover:-translate-y-0.5 rounded-xs cursor-pointer"
+              className="bg-surface border border-border-subtle hover:border-white/20 text-text-primary px-6 py-2.5 text-[10px] font-mono uppercase tracking-wider transition-all duration-200 hover:-translate-y-0.5 rounded-xs cursor-pointer"
             >
               See how engagements work
             </button>
@@ -556,241 +538,194 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="py-32 border-t border-border-subtle relative z-10"
+        className="py-24 md:py-32 lg:py-40 border-t border-border-subtle relative z-10 min-h-[calc(100vh-5rem)] flex items-center"
       >
-        <div className="max-w-[1320px] mx-auto px-6 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="max-w-[1320px] w-full mx-auto px-6 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Left Column: Wording copy */}
-          <div className="lg:col-span-5 space-y-6 text-left">
-            <Badge variant="outline" className="border-accent-emerald/30 text-accent-emerald">
+          {/* Left Column: Editorial Headline & Value Propositions (40% / 5 cols) */}
+          <div className="lg:col-span-5 space-y-8 text-left">
+            <Badge variant="outline" className="border-accent-emerald/30 text-accent-emerald bg-accent-emerald/5">
               INTAKE ACTIVE
             </Badge>
-            <h2 className="text-4xl font-serif font-bold text-white tracking-tight leading-tight">
-              Bring us the hard problem.
-            </h2>
-            <p className="text-sm text-text-secondary leading-relaxed max-w-md">
-              Whether you have a protocol specification, a product hypothesis, or only the beginning of an idea, we can help define the next step and build it.
-            </p>
-          </div>
+            
+            <div className="space-y-4">
+              <h2 className="text-4xl sm:text-5xl font-serif font-bold text-white tracking-tight leading-[1.12]">
+                Bring us the hard problem.
+              </h2>
+              <p className="text-base text-text-secondary leading-relaxed max-w-md">
+                Whether you have a protocol specification, a product hypothesis, or only the beginning of an idea—let's talk about what comes next.
+              </p>
+            </div>
 
-          {/* Right Column: Brief Form */}
-          <div id="insights" className="lg:col-span-7">
-            {!formSubmitted ? (
-              <Card className="p-8 border border-border-subtle bg-[#101418]/60 text-left hover:border-accent-emerald/15 transition-all duration-300">
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                  
-                  {/* Name */}
-                  <Input
-                    label="Name"
-                    placeholder="Your name"
-                    error={errors.name?.message}
-                    className="focus:border-accent-emerald/40 transition-colors"
-                    {...register("name", { required: "Name is required" })}
-                  />
-
-                  {/* Email */}
-                  <Input
-                    label="Work email"
-                    placeholder="name@company.com"
-                    type="email"
-                    error={errors.email?.message}
-                    className="focus:border-accent-emerald/40 transition-colors"
-                    {...register("email", {
-                      required: "Work email is required",
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: "Invalid email address"
-                      }
-                    })}
-                  />
-
-                  {/* Company */}
-                  <Input
-                    label="Company or project"
-                    placeholder="e.g. Protocol / Studio name"
-                    error={errors.company?.message}
-                    className="focus:border-accent-emerald/40 transition-colors"
-                    {...register("company", { required: "Company or project is required" })}
-                  />
-
-                  {/* Description */}
-                  <TextArea
-                    label="What are you building?"
-                    placeholder="Describe the opportunity, core logic, or project challenges..."
-                    error={errors.brief?.message}
-                    className="focus:border-accent-emerald/40 transition-colors"
-                    {...register("brief", { required: "Description is required" })}
-                  />
-
-                  {/* Stage */}
-                  <div className="space-y-2">
-                    <label className="block text-[11px] font-semibold uppercase tracking-wider text-text-secondary font-mono">
-                      Where are you now?
-                    </label>
-                    <div className="grid grid-cols-2 gap-2">
-                      {stageOptions.map((opt) => (
-                        <button
-                          key={opt}
-                          type="button"
-                          onClick={() => setValue("stage", opt, { shouldValidate: true })}
-                          className={`p-2.5 text-xs rounded-xs border text-center transition-all duration-200 cursor-pointer ${
-                            selectedStage === opt
-                              ? "bg-accent-emerald/5 border-accent-emerald text-white font-bold"
-                              : "bg-[#050505] border-border-subtle text-text-secondary hover:border-white/10"
-                          }`}
-                        >
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Help needed */}
-                  <div className="space-y-2">
-                    <label className="block text-[11px] font-semibold uppercase tracking-wider text-text-secondary font-mono">
-                      What kind of help do you need?
-                    </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                      {helpOptions.map((opt) => (
-                        <button
-                          key={opt}
-                          type="button"
-                          onClick={() => setValue("helpNeeded", opt, { shouldValidate: true })}
-                          className={`p-2.5 text-xs rounded-xs border text-center transition-all duration-200 cursor-pointer ${
-                            selectedHelp === opt
-                              ? "bg-accent-emerald/5 border-accent-emerald text-white font-bold"
-                              : "bg-[#050505] border-border-subtle text-text-secondary hover:border-white/10"
-                          }`}
-                        >
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Intended network */}
-                  <div className="space-y-2">
-                    <label className="block text-[11px] font-semibold uppercase tracking-wider text-text-secondary font-mono">
-                      Intended network
-                    </label>
-                    <div className="grid grid-cols-2 gap-2">
-                      {networkOptions.map((opt) => (
-                        <button
-                          key={opt}
-                          type="button"
-                          onClick={() => setValue("network", opt, { shouldValidate: true })}
-                          className={`p-2.5 text-xs rounded-xs border text-center transition-all duration-200 cursor-pointer ${
-                            selectedNetwork === opt
-                              ? "bg-accent-emerald/5 border-accent-emerald text-white font-bold"
-                              : "bg-[#050505] border-border-subtle text-text-secondary hover:border-white/10"
-                          }`}
-                        >
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Timing */}
-                  <div className="space-y-2">
-                    <label className="block text-[11px] font-semibold uppercase tracking-wider text-text-secondary font-mono">
-                      Target timing
-                    </label>
-                    <div className="grid grid-cols-3 gap-2">
-                      {timingOptions.map((opt) => (
-                        <button
-                          key={opt}
-                          type="button"
-                          onClick={() => setValue("timing", opt, { shouldValidate: true })}
-                          className={`p-2.5 text-xs rounded-xs border text-center transition-all duration-200 cursor-pointer ${
-                            selectedTiming === opt
-                              ? "bg-accent-emerald/5 border-accent-emerald text-white font-bold"
-                              : "bg-[#050505] border-border-subtle text-text-secondary hover:border-white/10"
-                          }`}
-                        >
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Budget */}
-                  <div className="space-y-2">
-                    <label className="block text-[11px] font-semibold uppercase tracking-wider text-text-secondary font-mono">
-                      Budget range (optional)
-                    </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                      {budgetOptions.map((opt) => (
-                        <button
-                          key={opt}
-                          type="button"
-                          onClick={() => setValue("budget", opt, { shouldValidate: true })}
-                          className={`p-2.5 text-xs rounded-xs border text-center transition-all duration-200 cursor-pointer ${
-                            selectedBudget === opt
-                              ? "bg-accent-emerald/5 border-accent-emerald text-white font-bold"
-                              : "bg-[#050505] border-border-subtle text-text-secondary hover:border-white/10"
-                          }`}
-                        >
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Links */}
-                  <Input
-                    label="Relevant links or files"
-                    placeholder="e.g. GitHub repos, Whitepaper URLs, Notion briefs"
-                    className="focus:border-accent-emerald/40 transition-colors"
-                    {...register("links")}
-                  />
-
-                  {/* Submit Button & Sub-text */}
-                  <div className="pt-4 space-y-4">
-                    <Button
-                      type="submit"
-                      variant="primary"
-                      className="w-full font-mono text-xs uppercase tracking-wider py-3.5 flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-accent-emerald/10 transition-all duration-300"
-                    >
-                      <span>Send Project Brief</span>
-                      <ArrowRight className="h-4 w-4" />
-                    </Button>
-                    <p className="text-[10px] text-text-secondary font-mono uppercase tracking-widest text-center">
-                      Tell us what you are building. We will reply with useful next steps—not a generic sales sequence.
-                    </p>
-                  </div>
-
-                </form>
-              </Card>
-            ) : (
-              /* Success confirmation exactly matching blueprint wording */
-              <Card className="p-8 border border-accent-emerald bg-accent-emerald/[0.02] text-center space-y-6">
-                <div className="w-12 h-12 rounded-full border border-accent-emerald bg-accent-emerald/5 flex items-center justify-center mx-auto animate-bounce">
-                  <CheckCircle2 className="h-6 w-6 text-accent-emerald" />
+            {/* Three concise reasons */}
+            <div className="pt-6 space-y-4 border-t border-border-subtle/60">
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5 rounded-full bg-accent-emerald/10 border border-accent-emerald/30 flex items-center justify-center shrink-0">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-accent-emerald" />
                 </div>
-                <div className="space-y-3">
-                  <h3 className="text-xl font-serif font-bold text-white">Intake Brief Received</h3>
-                  <p className="text-sm text-text-secondary leading-relaxed max-w-md mx-auto">
-                    Brief received. We’ll review it and respond with useful next steps. If there is a strong fit, we’ll suggest a short working session to define the path forward.
-                  </p>
-                </div>
-                <div className="pt-4">
-                  <Button variant="outline" onClick={() => setFormSubmitted(false)} className="py-2.5 px-6 font-mono text-[10px] uppercase tracking-wider">
-                    Submit Another Brief
-                  </Button>
-                </div>
-              </Card>
-            )}
+                <span className="text-sm font-mono text-text-primary">Product-first thinking</span>
+              </div>
 
-            {/* Low friction email CTA exactly matching blueprint copy */}
-            <div className="mt-6 text-center">
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5 rounded-full bg-accent-emerald/10 border border-accent-emerald/30 flex items-center justify-center shrink-0">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-accent-emerald" />
+                </div>
+                <span className="text-sm font-mono text-text-primary">Deep protocol engineering</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5 rounded-full bg-accent-emerald/10 border border-accent-emerald/30 flex items-center justify-center shrink-0">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-accent-emerald" />
+                </div>
+                <span className="text-sm font-mono text-text-primary">Long-term technical partnership</span>
+              </div>
+            </div>
+
+            {/* Direct email link */}
+            <div className="pt-2">
               <span className="font-mono text-xs text-text-secondary">
                 Prefer email?{" "}
-                <a href="mailto:hello@atum.finance" className="text-accent-emerald hover:text-accent-emerald/90 font-semibold underline decoration-accent-emerald/30 underline-offset-4">
+                <a
+                  href="mailto:hello@atum.finance"
+                  className="text-accent-emerald hover:text-accent-emerald/90 font-medium underline decoration-accent-emerald/30 underline-offset-4 transition-colors"
+                >
                   hello@atum.finance
                 </a>
               </span>
             </div>
+          </div>
+
+          {/* Right Column: Minimal Floating Form Card (60% / 7 cols) */}
+          <div id="insights" className="lg:col-span-7">
+            <AnimatePresence mode="wait">
+              {!formSubmitted ? (
+                <motion.div
+                  key="form"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Card className="p-8 sm:p-10 border border-border-subtle bg-surface/40 backdrop-blur-xl shadow-2xl rounded-xl text-left hover:border-border-subtle transition-all duration-300">
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                      
+                      {/* Name & Work Email in 2 cols on desktop */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {/* Name */}
+                        <Input
+                          label="Name"
+                          placeholder="Your name"
+                          error={errors.name?.message}
+                          className="focus:border-accent-emerald/50 focus:ring-accent-emerald/20 transition-all bg-background/50"
+                          {...register("name", { required: "Name is required" })}
+                        />
+
+                        {/* Work Email */}
+                        <Input
+                          label="Work email"
+                          placeholder="name@company.com"
+                          type="email"
+                          error={errors.email?.message}
+                          className="focus:border-accent-emerald/50 focus:ring-accent-emerald/20 transition-all bg-background/50"
+                          {...register("email", {
+                            required: "Work email is required",
+                            pattern: {
+                              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                              message: "Invalid email address"
+                            }
+                          })}
+                        />
+                      </div>
+
+                      {/* Company */}
+                      <Input
+                        label="Company or project"
+                        placeholder="e.g. Protocol / Studio name"
+                        error={errors.company?.message}
+                        className="focus:border-accent-emerald/50 focus:ring-accent-emerald/20 transition-all bg-background/50"
+                        {...register("company", { required: "Company or project is required" })}
+                      />
+
+                      {/* Project Description (Primary Focus) */}
+                      <div className="space-y-2">
+                        <TextArea
+                          label="What are you building?"
+                          placeholder="Tell us what you're building, the challenge you're facing, and where you'd like our help..."
+                          error={errors.brief?.message}
+                          className="focus:border-accent-emerald/50 focus:ring-accent-emerald/20 transition-all bg-background/50 min-h-[140px] text-sm leading-relaxed"
+                          {...register("brief", { required: "Project description is required" })}
+                        />
+                      </div>
+
+                      {/* Submit Button */}
+                      <div className="pt-2">
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="group relative w-full bg-accent-emerald hover:bg-accent-emerald/90 text-background py-4 px-8 font-mono text-xs uppercase tracking-wider font-semibold rounded-sm transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer shadow-lg shadow-accent-emerald/15 hover:shadow-accent-emerald/25 hover:-translate-y-0.5"
+                        >
+                          <span>Start the Conversation</span>
+                          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                        </button>
+                      </div>
+
+                    </form>
+                  </Card>
+                </motion.div>
+              ) : (
+                /* Success Confirmation State */
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <Card className="p-10 sm:p-12 border border-accent-emerald/30 bg-surface/50 backdrop-blur-xl shadow-2xl rounded-xl text-center space-y-6">
+                    {/* Animated checkmark circle */}
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
+                      className="w-16 h-16 rounded-full border border-accent-emerald bg-accent-emerald/10 flex items-center justify-center mx-auto"
+                    >
+                      <motion.svg
+                        className="w-8 h-8 text-accent-emerald"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                      >
+                        <motion.path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5 13l4 4L19 7"
+                          initial={{ pathLength: 0 }}
+                          animate={{ pathLength: 1 }}
+                          transition={{ duration: 0.5, delay: 0.2 }}
+                        />
+                      </motion.svg>
+                    </motion.div>
+
+                    <div className="space-y-3 max-w-md mx-auto">
+                      <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white">Thanks.</h3>
+                      <p className="text-base text-text-secondary leading-relaxed">
+                        We'll review your project personally and reply within 1–2 business days.
+                      </p>
+                    </div>
+
+                    <div className="pt-4">
+                      <button
+                        onClick={() => setFormSubmitted(false)}
+                        className="text-xs font-mono uppercase tracking-wider text-text-secondary hover:text-white transition-colors cursor-pointer py-2.5 px-6 border border-border-subtle hover:border-white/20 rounded-xs bg-background/50"
+                      >
+                        Send Another Message
+                      </button>
+                    </div>
+                  </Card>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
         </div>

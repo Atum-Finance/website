@@ -14,7 +14,7 @@ export const ServicesDiagram = () => {
   ];
 
   return (
-    <div className="w-full border border-border-subtle bg-[#101418]/50 p-6 rounded-xs overflow-x-auto select-none pointer-events-none">
+    <div className="w-full border border-border-subtle bg-surface/50 p-6 rounded-xs overflow-x-auto select-none scrollbar-thin">
       <div className="min-w-[600px] relative h-20">
         <svg viewBox="0 0 580 80" className="w-full h-full">
           {/* Base connector line */}

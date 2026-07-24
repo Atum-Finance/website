@@ -32,11 +32,20 @@ export const metadata: Metadata = {
     "Product Studio",
     "Web3 Engineering",
   ],
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/logo-icon.png", type: "image/png" },
+    ],
+    shortcut: "/logo-icon.png",
+    apple: "/logo-icon.png",
+  },
   openGraph: {
     title: "Atum Finance — Product & Engineering Studio for Private Finance",
     description:
       "Atum Finance designs and develops DeFi products, financial infrastructure, smart contracts, and user experiences for Anubis Chain and beyond.",
     type: "website",
+    images: ["/logo.png"],
   },
 };
 

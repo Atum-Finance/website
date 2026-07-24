@@ -21,6 +21,17 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   const navLinks = [
     { name: "Services", href: "#services" },
     { name: "Anubis DeFi", href: "#anubis-defi" },
@@ -43,7 +54,7 @@ export const Navbar = () => {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b h-20 flex items-center",
           isScrolled
-            ? "bg-[#050505]/80 backdrop-blur-md border-[#ffffff]/8 py-2"
+            ? "bg-background/85 backdrop-blur-md border-border-subtle py-2"
             : "bg-transparent border-transparent py-4"
         )}
       >
@@ -53,11 +64,16 @@ export const Navbar = () => {
             href="#"
             onClick={(e) => {
               e.preventDefault();
+              setMobileMenuOpen(false);
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="flex items-center gap-1.5 cursor-pointer font-mono text-xs font-bold tracking-widest text-[#FFFFFF]"
+            className="flex items-center cursor-pointer group py-1"
           >
-            <span>ATUM FINANCE</span>
+            <img
+              src="/logo.png"
+              alt="Atum Finance"
+              className="h-10 md:h-12 lg:h-[50px] w-auto object-contain transition-opacity duration-200 group-hover:opacity-90"
+            />
           </a>
 
           {/* Centered Navigation */}
@@ -70,7 +86,7 @@ export const Navbar = () => {
                   e.preventDefault();
                   handleScrollTo(link.href);
                 }}
-                className="font-mono text-[11px] font-medium uppercase tracking-wider text-[#AEB4BC] hover:text-[#FFFFFF] transition-colors duration-150 relative py-1 hover:underline decoration-accent-emerald underline-offset-4 decoration-1"
+                className="font-mono text-[11px] font-medium uppercase tracking-wider text-text-secondary hover:text-white transition-colors duration-150 relative py-1 hover:underline decoration-accent-emerald underline-offset-4 decoration-1"
               >
                 {link.name}
               </a>
@@ -81,7 +97,7 @@ export const Navbar = () => {
           <div className="hidden md:flex items-center">
             <button
               onClick={() => handleScrollTo("#contact")}
-              className="inline-flex items-center justify-center border border-border-subtle bg-[#101418] text-[#FFFFFF] hover:border-accent-emerald px-4 py-2 text-[10px] font-mono uppercase tracking-wider transition-colors duration-150 rounded-xs cursor-pointer"
+              className="inline-flex items-center justify-center border border-border-subtle bg-surface text-text-primary hover:border-accent-emerald px-4 py-2 text-[10px] font-mono uppercase tracking-wider transition-colors duration-150 rounded-xs cursor-pointer"
             >
               <span>Start a Project</span>
             </button>
@@ -90,10 +106,11 @@ export const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-[#AEB4BC] hover:text-[#FFFFFF] transition-colors cursor-pointer"
+            className="md:hidden text-text-secondary hover:text-white transition-colors p-2 cursor-pointer focus:outline-none focus:ring-1 focus:ring-accent-emerald/40 rounded-xs"
             aria-label="Toggle Menu"
+            aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
       </header>
@@ -106,7 +123,7 @@ export const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed inset-0 z-40 bg-[#050505]/95 backdrop-blur-lg pt-24 px-6 md:hidden flex flex-col justify-between pb-8 border-b border-border-subtle"
+            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-24 px-6 md:hidden flex flex-col justify-between pb-8 border-b border-border-subtle overflow-y-auto"
           >
             <div className="flex flex-col gap-6">
               <div className="h-px bg-border-subtle w-full my-1" />
@@ -123,7 +140,7 @@ export const Navbar = () => {
                       e.preventDefault();
                       handleScrollTo(link.href);
                     }}
-                    className="font-mono text-sm font-semibold uppercase tracking-widest block py-1 text-[#AEB4BC] hover:text-[#FFFFFF]"
+                    className="font-mono text-sm font-semibold uppercase tracking-widest block py-2 text-text-secondary hover:text-white transition-colors"
                   >
                     {link.name}
                   </a>
@@ -134,7 +151,7 @@ export const Navbar = () => {
 
             <button
               onClick={() => handleScrollTo("#contact")}
-              className="w-full bg-[#101418] border border-border-subtle hover:border-accent-emerald text-[#FFFFFF] py-3.5 flex items-center justify-center gap-1.5 font-mono text-xs uppercase tracking-wider rounded-xs cursor-pointer"
+              className="w-full bg-surface border border-border-subtle hover:border-accent-emerald text-text-primary py-3.5 flex items-center justify-center gap-1.5 font-mono text-xs uppercase tracking-wider rounded-xs cursor-pointer mt-6"
             >
               <span>Start a Project</span>
               <ArrowRight className="h-4 w-4" />

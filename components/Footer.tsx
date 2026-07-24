@@ -27,7 +27,7 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-[#050505] border-t border-border-subtle pt-16 pb-12 z-10 font-sans">
+    <footer className="relative bg-background border-t border-border-subtle pt-16 pb-12 z-10 font-sans">
       <div className="max-w-[1320px] mx-auto px-6 md:px-8">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10 pb-12 border-b border-border-subtle">
           
@@ -39,9 +39,13 @@ export const Footer = () => {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
-              className="flex items-center gap-1.5 cursor-pointer font-mono text-xs font-bold tracking-widest text-[#FFFFFF]"
+              className="inline-block cursor-pointer group"
             >
-              <span>ATUM FINANCE</span>
+              <img
+                src="/logo.png"
+                alt="Atum Finance"
+                className="h-11 md:h-13 w-auto object-contain transition-opacity duration-200 group-hover:opacity-90"
+              />
             </a>
             <p className="text-sm text-text-secondary leading-relaxed">
               Building financial products from first principles.
@@ -67,16 +71,16 @@ export const Footer = () => {
         </div>
 
         {/* Socials & Copyright */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-10 text-xs text-[#AEB4BC]">
+        <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-6 pt-10 text-xs text-text-secondary">
           {/* Socials */}
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-6">
             {socialLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-[10px] font-semibold uppercase tracking-widest hover:text-white transition-colors duration-150"
+                className="font-mono text-[10px] font-semibold uppercase tracking-widest text-text-secondary hover:text-white transition-colors duration-150"
               >
                 {link.name}
               </a>
@@ -84,7 +88,7 @@ export const Footer = () => {
           </div>
 
           {/* Copyright Statement */}
-          <div className="font-mono text-[10px] uppercase tracking-wider text-right">
+          <div className="font-mono text-[10px] uppercase tracking-wider text-center sm:text-right text-text-secondary">
             © 2026 Atum Finance. All rights reserved.
           </div>
         </div>
