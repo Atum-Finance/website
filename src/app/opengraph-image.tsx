@@ -1,5 +1,7 @@
 import { ImageResponse } from "next/og";
 
+export const dynamic = "force-static";
+
 export const alt = "Atum Finance — The Protection Layer for Digital Assets";
 export const size = {
   width: 1200,
